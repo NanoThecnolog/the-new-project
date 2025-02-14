@@ -8,6 +8,7 @@ export class AppService {
   async getData(email: string, id: string) {
     const data = { email, id }
     //console.log(data)
+    if (!email && !id) return
     return this.prisma.user.create({
       data: {
         email,
