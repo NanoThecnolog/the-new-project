@@ -9,7 +9,7 @@ export class AppController {
 
   @Get()
   async getWebhookReq(@Query('email') email: string, @Query('id') id: string) {
-    return this.appService.getData(email, id)
+    return this.appService.setData(email, id)
   }
 
   @Get('alive')
@@ -19,6 +19,19 @@ export class AppController {
 
   @Post()
   async getWebhookReqPost(@Query('email') email: string, @Query('id') id: string) {
-    return this.appService.getData(email, id)
+    return this.appService.setData(email, id)
   }
+  @Get('user/list')
+  async getDataDB(@Query('page') page?: string, @Query('pageSize') pageSize?: string) {
+    const pageNumber = Number(page) || 1
+    const pageSizeNumber = Number(pageSize) || 10
+
+    return this.appService.getDataDB(pageNumber, pageSizeNumber)
+  }
+
+  @Get('user/detail')
+  async getUserDataDB(@Query('email') email: string) {
+    return this.appService.getUserData(email)
+  }
+
 }
