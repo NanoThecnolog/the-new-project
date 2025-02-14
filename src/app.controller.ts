@@ -16,4 +16,9 @@ export class AppController {
   getAlive() {
     return this.appService.getHello()
   }
+
+  @Post()
+  async getWebhookReqPost(@Query('email') email: string, @Query('id') id: string) {
+    return this.appService.getData(email, id)
+  }
 }
